@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include = "..\2)-my-finance-web-dotnet-service\my-finance-web-dotnet-service.csproj"/>
-    <ProjectReference Include = "..\3)-my-finance-web-dotnet-domain\my-finance-web-dotnet-domain.csproj"/>
-    <ProjectReference Include = "..\4)-my-finance-web-dotnet-infra\my-finance-web-dotnet-infra.csproj"/>
+    <ProjectReference Include="..\2)-my-finance-web-dotnet-service\my-finance-web-dotnet-service.csproj" />
+    <ProjectReference Include="..\3)-my-finance-web-dotnet-domain\my-finance-web-dotnet-domain.csproj" />
+    <ProjectReference Include="..\4)-my-finance-web-dotnet-infra\my-finance-web-dotnet-infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.1" />
   </ItemGroup>
 
 </Project>
