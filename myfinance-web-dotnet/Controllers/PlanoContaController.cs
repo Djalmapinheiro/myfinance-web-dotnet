@@ -38,12 +38,64 @@ namespace myfinance_web_dotnet.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [HttpGet]
+        [Route("Cadastrar")]
+        [Route("Cadastrar/{Id}")]
 
-        public IActionResult Error()
+        public IActionResult Cadastrar(int? Id)
         {
-            return View("Error!");
+            if (Id != null)
+            {
+
+                var planoConta = _planoContaService.RetornarRegistros((int)Id);
+                var planoContaModel = new PlanoContaModel()
+                {
+                    Id = planoConta.Id,
+                    Descricao = planoConta.Descricao,
+                    Tipo = planoConta.Tipo
+                };
+
+                return View(planoContaModel);
+            }
+            else
+            {
+                return View();
+
+            }
         }
 
-    }
+            [HttpPost]
+            [Route("Cadastrar")]
+            [Route("Cadastrar/{Id}")]
+
+            public IActionResult Cadastrar(PlanoContaModel model)
+            {
+                var planoConta = new PlanoConta()
+                {
+                    Id = model.Id,
+                    Descricao = model.Descricao,
+                    Tipo = model.Tipo
+                };
+                _planoContaService.Cadastrar(planoConta);
+                return RedirectToAction("Index");
+            }
+
+        [HttpGet]
+        [Route("Excluir/{Id}")]
+
+        public IActionResult Excluir(int? Id)
+        {
+            _planoContaService.Excluir((int)Id);
+            return RedirectToAction("Index");
+            }
+
+
+            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+
+            public IActionResult Error()
+            {
+                return View("Error!");
+            }
+
+        }
 }
