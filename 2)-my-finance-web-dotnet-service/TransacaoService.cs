@@ -40,7 +40,7 @@ namespace my_finance_web_dotnet_service
 
         public List<Transacao> ListarRegistros()
         {
-            var dbSet = _dbContext.Transacao;
+            var dbSet = _dbContext.Transacao.Include(X => X.PlanoConta);
             return dbSet.ToList();
         }
 
